@@ -1,12 +1,25 @@
 package com.dinuka;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
 public class Customer {
-    private int id;
+
+    @Id
+    @SequenceGenerator(
+            name = "customer_id_sequence",
+            sequenceName = "customer_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_id_sequence"
+    )
+    private Integer id;
     private String name;
     private String email;
-    private int age;
+    private Integer age;
 
     public Customer(int id, String name, String email, int age) {
         this.id = id;
